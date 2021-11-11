@@ -1,1 +1,50 @@
+@use '../../sass/abstracts/vars' as *;
 
+@mixin heading-1 {
+	font-family: var(--fnt-bellefair);
+	font-size: 9.375em;
+}
+
+@mixin heading-2 {
+	font-family: var(--fnt-bellefair);
+	font-size: 6.25em;
+}
+
+@mixin heading-3 {
+	font-family: var(--fnt-bellefair);
+	font-size: 3.5em;
+}
+
+@mixin heading-4 {
+	font-family: var(--fnt-bellefair);
+	font-size: 2em;
+}
+
+@mixin heading-5 {
+	font-family: var(--fnt-barlow);
+	font-size: 1.75em;
+	letter-spacing: 0.25em;
+}
+
+@mixin sub-heading-1 {
+	font-family: var(--fnt-bellefair);
+	font-size: 1.75em;
+}
+
+@mixin sub-heading-2 {
+	font-family: var(--fnt-barlow);
+	font-size: 0.875em;
+	letter-spacing: 0.17em;
+}
+
+@mixin nav-text {
+	font-family: var(--fnt-barlow);
+	font-size: 1em;
+	letter-spacing: 0.16em;
+}
+
+@mixin body-text {
+	font-family: var(--fnt-barlow);
+	font-size: 1.125em;
+	line-height: 2em;
+}
