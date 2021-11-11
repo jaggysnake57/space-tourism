@@ -8,10 +8,12 @@ import Technology from './pages/Technology/Technology';
 
 // css
 import './styles.css';
+import Navbar from './Components/Navbar/Navbar';
 
 function App() {
 	return (
 		<div className="App">
+			<Navbar />
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/destination" element={<Destination />} />

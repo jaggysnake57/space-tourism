@@ -2,6 +2,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed&family=Bellefair&display=swap');
 
-p {
-	@include body-text;
+body {
+	background-color: var(--clr-primary);
 }

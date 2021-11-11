@@ -3,44 +3,52 @@
 @mixin heading-1 {
 	font-family: var(--fnt-bellefair);
 	font-size: 9.375em;
+	text-transform: uppercase;
 }
 
 @mixin heading-2 {
 	font-family: var(--fnt-bellefair);
 	font-size: 6.25em;
+	text-transform: uppercase;
 }
 
 @mixin heading-3 {
 	font-family: var(--fnt-bellefair);
 	font-size: 3.5em;
+	text-transform: uppercase;
 }
 
 @mixin heading-4 {
 	font-family: var(--fnt-bellefair);
 	font-size: 2em;
+	text-transform: uppercase;
 }
 
 @mixin heading-5 {
 	font-family: var(--fnt-barlow);
 	font-size: 1.75em;
 	letter-spacing: 0.25em;
+	text-transform: uppercase;
 }
 
 @mixin sub-heading-1 {
 	font-family: var(--fnt-bellefair);
 	font-size: 1.75em;
+	text-transform: uppercase;
 }
 
 @mixin sub-heading-2 {
 	font-family: var(--fnt-barlow);
 	font-size: 0.875em;
 	letter-spacing: 0.17em;
+	text-transform: uppercase;
 }
 
 @mixin nav-text {
 	font-family: var(--fnt-barlow);
 	font-size: 1em;
 	letter-spacing: 0.16em;
+	text-transform: uppercase;
 }
 
 @mixin body-text {
