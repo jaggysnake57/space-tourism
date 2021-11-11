@@ -1,9 +1,19 @@
+// pages
+import Home from './pages/Home/Home';
+import Destination from './pages/Destination/Destination';
+import Crew from './pages/Crew/Crew';
+import Technology from './pages/Technology/Technology';
+
+// css
 import './styles.css';
 
 function App() {
 	return (
 		<div className="App">
-			<h1>this is a test</h1>
+			<Home />
+			<Destination />
+			<Crew />
+			<Technology />
 		</div>
 	);
 }

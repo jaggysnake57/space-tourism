@@ -6,3 +6,19 @@
 *::after, *::before {
   box-sizing: border-box;
 }
+
+.home {
+  background-color: blue;
+}
+
+.destination {
+  background-color: green;
+}
+
+.crew {
+  background-color: hotpink;
+}
+
+.technology {
+  background-color: yellow;
+}
