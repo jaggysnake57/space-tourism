@@ -9,4 +9,15 @@ body {
 .container {
 	width: 90%;
 	margin-inline: auto;
+	@include mq(large) {
+		width: 80%;
+		max-width: 1600px;
+	}
+
+	&--nav {
+		@include mq(large) {
+			width: 90%;
+			max-width: 5000px;
+		}
+	}
 }
