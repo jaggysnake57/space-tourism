@@ -1,19 +1,55 @@
 @use '../../sass/abstracts' as *;
 
+/*=============================================
+=            navbar            =
+=============================================*/
+
 .navbar {
 	width: 100%;
 	position: fixed;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+	padding-top: 1rem;
+
+	@include mq(medium) {
+		padding-top: 0;
+	}
+
+	@include mq(large) {
+		&::before {
+			content: '';
+			width: calc(75% - 775px);
+			height: 1px;
+			background-color: rgba(255, 255, 255, 0.25);
+			position: absolute;
+			left: 10%;
+			top: 50%;
+		}
+	}
+
+	&__content {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	&__menu-button {
+		@include mq(medium) {
+			display: none;
+		}
+	}
 }
+
+/*=====  End of navbar  ======*/
+
+/*=============================================
+=            main nav section            =
+=============================================*/
 
 .main-nav {
 	height: 100vh;
 	padding-left: 2rem;
 	padding-top: 7rem;
 	position: absolute;
-	top: 0;
+	top: -1rem;
 	right: 0;
 	left: 33%;
 	display: flex;
@@ -23,23 +59,63 @@
 	transform: translateX(101%);
 	transition: transform 0.5s ease-in-out;
 
+	// medium screen for main-nav
+	@include mq(medium) {
+		height: auto;
+		min-width: 75%;
+		padding: 3rem;
+		position: relative;
+		top: 0;
+		left: auto;
+		right: -6%;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		transform: translateX(0);
+		backdrop-filter: none;
+
+		// space between links
+		& > * + * {
+			margin-left: 2rem;
+		}
+	}
+
+	// large screen break
+	@include mq(large) {
+		padding: 3rem 9rem;
+		min-width: auto;
+		width: 80%;
+		max-width: 1200px;
+	}
+
 	&--isOpen {
 		transform: translateX(0);
 	}
 
+	// close button on small screen
 	&__close {
 		position: absolute;
-		right: 1rem;
-		top: 1rem;
+		right: 8%;
+		top: 2.8rem;
 		width: 1.4rem;
+		@include mq(medium) {
+			display: none;
+		}
 	}
 
+	// all links in the main nav
 	& > a {
 		@include nav-text;
 		position: relative;
 		margin-bottom: 2rem;
 		color: white;
 		text-decoration: none;
+		white-space: nowrap;
+
+		@include mq(medium) {
+			margin-bottom: 0;
+		}
+		// nav active highlight
 		&::after {
 			content: '';
 			width: 3px;
@@ -51,15 +127,38 @@
 			background-color: white;
 			opacity: 0;
 			transition: opacity 0.2s;
+
+			// change highlight to bottom of link
+			@include mq(medium) {
+				width: 100%;
+				height: 3px;
+				top: auto;
+				bottom: -3rem;
+			}
 		}
+
 		&.isActive {
 			&::after {
 				opacity: 1;
 			}
 		}
+
+		// numbers before links
 		span {
 			font-weight: bold;
 			margin-right: 0.2rem;
+
+			//hide @ tablet
+			@include mq(medium) {
+				display: none;
+			}
+
+			//show again at desktop
+			@include mq(large) {
+				display: inline;
+			}
 		}
 	}
 }
+
+/*=====  End of main nav section  ======*/
