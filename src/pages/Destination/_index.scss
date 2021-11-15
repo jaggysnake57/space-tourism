@@ -1,73 +1,158 @@
 @use '../../sass/abstracts' as *;
 
-.destination__planet-img {
-	display: flex;
+:root {
+	--duration: 0.5s;
+}
+
+.destination {
+	padding-top: 5rem;
+	min-height: 100vh;
+	background-image: url('./assets/destination/background-destination-mobile.jpg');
+	background-size: cover;
+
+	@include mq(medium) {
+		background-image: url('./assets/destination/background-destination-tablet.jpg');
+		padding-top: 10rem;
+	}
+
+	@include mq(large) {
+		padding-top: 15rem;
+		background-image: url('./assets/destination/background-destination-desktop.jpg');
+	}
+
+	&__main-title {
+		@include heading-5;
+		text-align: center;
+		margin-bottom: 3rem;
+		color: white;
+
+		@include mq(large) {
+			font-size: 2.2rem;
+		}
+
+		span {
+			opacity: 0.25;
+		}
+
+		@include mq(medium) {
+			text-align: left;
+			margin-bottom: 5rem;
+		}
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		@include mq(large) {
+			flex-direction: row;
+		}
+	}
+
+	&__planet-images {
+		height: 50vw;
+		@include mq(large) {
+			width: 60%;
+		}
+	}
+}
+
+.planet-info {
+	color: white;
+
+	&__link-wrapper {
+		margin-top: 3rem;
+		margin-bottom: 3rem;
+		ul {
+			display: flex;
+			justify-content: center;
+			li {
+				@include nav-text;
+				list-style-type: none;
+				margin: 0 1rem;
+				position: relative;
+				cursor: pointer;
+				&::after {
+					content: '';
+					width: 100%;
+					height: 3px;
+					background-color: white;
+					position: absolute;
+					left: 0;
+					bottom: -100%;
+					opacity: 0;
+				}
+			}
+		}
+	}
+
+	.current-planet {
+		&::after {
+			opacity: 1;
+		}
+	}
+
+	&__info-wrapper {
+		position: absolute;
+		opacity: 0;
+		width: 90%;
+		transition: opacity 0.5s 0.5s;
+
+		@include mq(medium) {
+			width: 90%;
+		}
+
+		@include mq(large) {
+			width: 30%;
+		}
+	}
+}
+
+.showInfo {
+	opacity: 1;
 }
 
 .planet {
-	width: 250px;
-	aspect-ratio: 1;
-	display: grid;
-	place-items: center;
-	font-size: 3rem;
 	position: absolute;
-	// opacity: 0;
-	margin-top: 20rem;
+	left: 50%;
 	transform: translate(-300%, -20%);
-
-	&:nth-child(1) {
-		background-color: green;
+	width: 50vw;
+	min-width: 10.3rem;
+	@include mq(medium) {
+		max-width: 30rem;
 	}
-	&:nth-child(2) {
-		background-color: hotpink;
-	}
-	&:nth-child(3) {
-		background-color: yellowgreen;
-	}
-	&:nth-child(4) {
-		background-color: blueviolet;
+	@include mq(large) {
+		left: 30%;
+		width: 35vw;
+		max-width: 40rem;
 	}
 }
 
 // classes for moving planets
 .showPlanetForwards {
 	animation-name: moveInFromRear;
-	animation-duration: 1s;
+	animation-duration: var(--duration);
 	animation-fill-mode: forwards;
 	animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .showPlanetBackwards {
 	animation-name: moveInFromFront;
-	animation-duration: 1s;
+	animation-duration: var(--duration);
 	animation-fill-mode: forwards;
 	animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .removePlanetForwards {
 	animation-name: moveOutToFront;
-	animation-duration: 1s;
+	animation-duration: var(--duration);
 	animation-fill-mode: forwards;
 	animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 .removePlanetBackwards {
 	animation-name: moveOutToRear;
-	animation-duration: 1s;
+	animation-duration: var(--duration);
 	animation-fill-mode: forwards;
 	animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-
-.planet-info__link-wrapper {
-	ul {
-		margin-top: 10rem;
-		display: flex;
-		li {
-			list-style: none;
-			font-size: 2rem;
-			margin: 0 1rem;
-			color: white;
-		}
-	}
 }
 
 // animations for moving planets
@@ -76,7 +161,7 @@
 		transform: translate(-300%, -100%) scale(0);
 	}
 	100% {
-		transform: translate(0%, 0%) scale(100%);
+		transform: translate(-50%, 0%) scale(100%);
 	}
 }
 
@@ -85,13 +170,13 @@
 		transform: translate(-300%, 100%) scale(200%);
 	}
 	100% {
-		transform: translate(0%, 0%) scale(100%);
+		transform: translate(-50%, 0%) scale(100%);
 	}
 }
 
 @keyframes moveOutToFront {
 	0% {
-		transform: translate(0%, 0%) scale(100%);
+		transform: translate(-50%, 0%) scale(100%);
 	}
 	100% {
 		transform: translate(-300%, 100%) scale(200%);
@@ -100,7 +185,7 @@
 
 @keyframes moveOutToRear {
 	0% {
-		transform: translate(0%, 0%) scale(100%);
+		transform: translate(-50%, 0%) scale(100%);
 	}
 	100% {
 		transform: translate(-300%, -100%) scale(0%);

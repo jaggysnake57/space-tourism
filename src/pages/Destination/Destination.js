@@ -1,4 +1,14 @@
+//  react
 import { useRef, useState } from 'react';
+
+import { destinations } from '../../data/destination.json';
+
+//assets
+import moon from '../../assets/destination/image-moon.webp';
+import mars from '../../assets/destination/image-mars.webp';
+import europa from '../../assets/destination/image-europa.webp';
+import titan from '../../assets/destination/image-titan.webp';
+import DestinationInfo from './DestinationInfo/DestinationInfo';
 
 const Destination = () => {
 	// refs
@@ -11,6 +21,7 @@ const Destination = () => {
 
 	// state
 	const [currentIndex, setCurrentIndex] = useState(0);
+	const [currentPlanet, setCurrentPlanet] = useState('moon');
 
 	// functions
 	const handlePlanetLinkClick = (planet, newIndex) => {
@@ -20,6 +31,7 @@ const Destination = () => {
 		let tempCurrentIndex = currentIndex;
 
 		// is new index greater or smaller than old index
+		const duration = 500;
 		if (newIndex > currentIndex) {
 			// creates a timed loop for adding and removing classes to the
 			// planets. this allows planets to appear to move around
@@ -49,7 +61,7 @@ const Destination = () => {
 					// if the current planet is not the correct planet selected the
 					// function is called again otherwise it stops.
 					if (tempCurrentIndex < newIndex) myLoop();
-				}, 1000);
+				}, duration);
 			};
 			// initializes the loop
 			myLoop();
@@ -80,12 +92,13 @@ const Destination = () => {
 						'showPlanetBackwards'
 					);
 					if (tempCurrentIndex > newIndex) myLoop();
-				}, 1000);
+				}, duration);
 			};
 			myLoop();
 		}
 		// set the new index
 		setCurrentIndex(newIndex);
+		setCurrentPlanet(planet);
 	};
 
 	return (
@@ -95,44 +108,74 @@ const Destination = () => {
 					<span>01</span> pick your destination
 				</h1>
 				<section className="destination__content">
-					<div className="destination__planet-img">
-						{/* planet image */}
-						<p ref={moonRef} className="planet showPlanetForwards">
-							moon
-						</p>
-						<p ref={marsRef} className="planet">
-							mars
-						</p>
-						<p ref={europaRef} className="planet">
-							europa
-						</p>
-						<p ref={titanRef} className="planet">
-							titan
-						</p>
+					<div className="destination__planet-images">
+						<img
+							src={moon}
+							alt="the moon"
+							ref={moonRef}
+							className="planet showPlanetForwards"
+						/>
+
+						<img
+							src={mars}
+							alt="Mars"
+							ref={marsRef}
+							className="planet"
+						/>
+
+						<img
+							src={europa}
+							alt="Europa"
+							ref={europaRef}
+							className="planet"
+						/>
+
+						<img
+							src={titan}
+							alt="Titan"
+							ref={titanRef}
+							className="planet"
+						/>
 					</div>
 
 					<div className="planet-info">
 						<div className="planet-info__link-wrapper">
 							<ul>
 								<li
+									className={
+										currentPlanet === 'moon' &&
+										'current-planet'
+									}
 									onClick={() =>
 										handlePlanetLinkClick('moon', 0)
 									}>
 									moon
 								</li>
 								<li
+									className={
+										currentPlanet === 'mars' &&
+										'current-planet'
+									}
 									onClick={() =>
 										handlePlanetLinkClick('mars', 1)
 									}>
 									mars
 								</li>
 								<li
+									className={
+										currentPlanet === 'europa' &&
+										'current-planet'
+									}
 									onClick={() =>
 										handlePlanetLinkClick('europa', 2)
 									}>
 									europa
 								</li>
 								<li
+									className={
+										currentPlanet === 'titan' &&
+										'current-planet'
+									}
 									onClick={() =>
 										handlePlanetLinkClick('titan', 3)
 									}>
@@ -140,6 +183,16 @@ const Destination = () => {
 								</li>
 							</ul>
 						</div>
+						{destinations.map((planet) => (
+							<div
+								className={`planet-info__info-wrapper ${
+									currentPlanet === planet.name.toLowerCase()
+										? 'showInfo'
+										: undefined
+								}`}>
+								<DestinationInfo planetInfo={planet} />
+							</div>
+						))}
 					</div>
 				</section>
 			</div>

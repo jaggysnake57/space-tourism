@@ -1,0 +1,61 @@
+@use '../../../sass/abstracts' as *;
+
+.destination-info {
+	&__about {
+		text-align: center;
+
+		@include mq(large) {
+			text-align: left;
+		}
+
+		h2 {
+			@include heading-1;
+			@include mq(large) {
+				font-size: clamp(7rem, 10vw, 9.235rem);
+			}
+		}
+
+		p {
+			@include body-text;
+			text-align: center;
+			color: var(--clr-txt-paragraph);
+			margin-bottom: 2rem;
+
+			@include mq(large) {
+				text-align: left;
+			}
+		}
+	}
+
+	&__stats-wrapper {
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+		padding-top: 2rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.25);
+
+		@include mq(medium) {
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-around;
+		}
+
+		@include mq(large) {
+			justify-content: flex-start;
+			text-align: left;
+			& > * + * {
+				margin-left: 5rem;
+			}
+		}
+
+		h3 {
+			@include sub-heading-2;
+			color: var(--clr-txt-paragraph);
+			margin-bottom: 1.5rem;
+		}
+		p {
+			@include sub-heading-1;
+			margin-bottom: 2rem;
+		}
+	}
+}

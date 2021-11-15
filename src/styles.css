@@ -150,70 +150,170 @@ body {
   opacity: 1;
 }
 
-.destination__planet-img {
+:root {
+  --duration: 0.5s;
+}
+
+.destination {
+  padding-top: 5rem;
+  min-height: 100vh;
+  background-image: url("./assets/destination/background-destination-mobile.jpg");
+  background-size: cover;
+}
+@media (min-width: 40em) {
+  .destination {
+    background-image: url("./assets/destination/background-destination-tablet.jpg");
+    padding-top: 10rem;
+  }
+}
+@media (min-width: 63em) {
+  .destination {
+    padding-top: 15rem;
+    background-image: url("./assets/destination/background-destination-desktop.jpg");
+  }
+}
+.destination__main-title {
+  font-family: var(--fnt-barlow);
+  font-size: clamp(1em, 3vw, 1.25em);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: white;
+}
+@media (min-width: 63em) {
+  .destination__main-title {
+    font-size: 2.2rem;
+  }
+}
+.destination__main-title span {
+  opacity: 0.25;
+}
+@media (min-width: 40em) {
+  .destination__main-title {
+    text-align: left;
+    margin-bottom: 5rem;
+  }
+}
+.destination__content {
   display: flex;
+  flex-direction: column;
+}
+@media (min-width: 63em) {
+  .destination__content {
+    flex-direction: row;
+  }
+}
+.destination__planet-images {
+  height: 50vw;
+}
+@media (min-width: 63em) {
+  .destination__planet-images {
+    width: 60%;
+  }
+}
+
+.planet-info {
+  color: white;
+}
+.planet-info__link-wrapper {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+.planet-info__link-wrapper ul {
+  display: flex;
+  justify-content: center;
+}
+.planet-info__link-wrapper ul li {
+  font-family: var(--fnt-barlow);
+  font-size: 1em;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  list-style-type: none;
+  margin: 0 1rem;
+  position: relative;
+  cursor: pointer;
+}
+.planet-info__link-wrapper ul li::after {
+  content: "";
+  width: 100%;
+  height: 3px;
+  background-color: white;
+  position: absolute;
+  left: 0;
+  bottom: -100%;
+  opacity: 0;
+}
+.planet-info .current-planet::after {
+  opacity: 1;
+}
+.planet-info__info-wrapper {
+  position: absolute;
+  opacity: 0;
+  width: 90%;
+  transition: opacity 0.5s 0.5s;
+}
+@media (min-width: 40em) {
+  .planet-info__info-wrapper {
+    width: 90%;
+  }
+}
+@media (min-width: 63em) {
+  .planet-info__info-wrapper {
+    width: 30%;
+  }
+}
+
+.showInfo {
+  opacity: 1;
 }
 
 .planet {
-  width: 250px;
-  aspect-ratio: 1;
-  display: grid;
-  place-items: center;
-  font-size: 3rem;
   position: absolute;
-  margin-top: 20rem;
+  left: 50%;
   transform: translate(-300%, -20%);
+  width: 50vw;
+  min-width: 10.3rem;
 }
-.planet:nth-child(1) {
-  background-color: green;
+@media (min-width: 40em) {
+  .planet {
+    max-width: 30rem;
+  }
 }
-.planet:nth-child(2) {
-  background-color: hotpink;
-}
-.planet:nth-child(3) {
-  background-color: yellowgreen;
-}
-.planet:nth-child(4) {
-  background-color: blueviolet;
+@media (min-width: 63em) {
+  .planet {
+    left: 30%;
+    width: 35vw;
+    max-width: 40rem;
+  }
 }
 
 .showPlanetForwards {
   animation-name: moveInFromRear;
-  animation-duration: 1s;
+  animation-duration: var(--duration);
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .showPlanetBackwards {
   animation-name: moveInFromFront;
-  animation-duration: 1s;
+  animation-duration: var(--duration);
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .removePlanetForwards {
   animation-name: moveOutToFront;
-  animation-duration: 1s;
+  animation-duration: var(--duration);
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .removePlanetBackwards {
   animation-name: moveOutToRear;
-  animation-duration: 1s;
+  animation-duration: var(--duration);
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-
-.planet-info__link-wrapper ul {
-  margin-top: 10rem;
-  display: flex;
-}
-.planet-info__link-wrapper ul li {
-  list-style: none;
-  font-size: 2rem;
-  margin: 0 1rem;
-  color: white;
 }
 
 @keyframes moveInFromRear {
@@ -221,7 +321,7 @@ body {
     transform: translate(-300%, -100%) scale(0);
   }
   100% {
-    transform: translate(0%, 0%) scale(100%);
+    transform: translate(-50%, 0%) scale(100%);
   }
 }
 @keyframes moveInFromFront {
@@ -229,12 +329,12 @@ body {
     transform: translate(-300%, 100%) scale(200%);
   }
   100% {
-    transform: translate(0%, 0%) scale(100%);
+    transform: translate(-50%, 0%) scale(100%);
   }
 }
 @keyframes moveOutToFront {
   0% {
-    transform: translate(0%, 0%) scale(100%);
+    transform: translate(-50%, 0%) scale(100%);
   }
   100% {
     transform: translate(-300%, 100%) scale(200%);
@@ -242,12 +342,81 @@ body {
 }
 @keyframes moveOutToRear {
   0% {
-    transform: translate(0%, 0%) scale(100%);
+    transform: translate(-50%, 0%) scale(100%);
   }
   100% {
     transform: translate(-300%, -100%) scale(0%);
   }
 }
+.destination-info__about {
+  text-align: center;
+}
+@media (min-width: 63em) {
+  .destination-info__about {
+    text-align: left;
+  }
+}
+.destination-info__about h2 {
+  font-family: var(--fnt-bellefair);
+  font-size: clamp(5em, 20vw + 1em, 9.375em);
+  text-transform: uppercase;
+}
+@media (min-width: 63em) {
+  .destination-info__about h2 {
+    font-size: clamp(7rem, 10vw, 9.235rem);
+  }
+}
+.destination-info__about p {
+  font-family: var(--fnt-barlow);
+  font-size: clamp(1em, 3vw, 1.2em);
+  line-height: 2em;
+  text-align: center;
+  color: var(--clr-txt-paragraph);
+  margin-bottom: 2rem;
+}
+@media (min-width: 63em) {
+  .destination-info__about p {
+    text-align: left;
+  }
+}
+.destination-info__stats-wrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+}
+@media (min-width: 40em) {
+  .destination-info__stats-wrapper {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+  }
+}
+@media (min-width: 63em) {
+  .destination-info__stats-wrapper {
+    justify-content: flex-start;
+    text-align: left;
+  }
+  .destination-info__stats-wrapper > * + * {
+    margin-left: 5rem;
+  }
+}
+.destination-info__stats-wrapper h3 {
+  font-family: var(--fnt-barlow);
+  font-size: 0.875em;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  color: var(--clr-txt-paragraph);
+  margin-bottom: 1.5rem;
+}
+.destination-info__stats-wrapper p {
+  font-family: var(--fnt-bellefair);
+  font-size: 1.75em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
 .crew {
   background-color: hotpink;
 }
