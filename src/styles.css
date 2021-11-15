@@ -150,10 +150,104 @@ body {
   opacity: 1;
 }
 
-.destination {
-  background-color: green;
+.destination__planet-img {
+  display: flex;
 }
 
+.planet {
+  width: 250px;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  font-size: 3rem;
+  position: absolute;
+  margin-top: 20rem;
+  transform: translate(-300%, -20%);
+}
+.planet:nth-child(1) {
+  background-color: green;
+}
+.planet:nth-child(2) {
+  background-color: hotpink;
+}
+.planet:nth-child(3) {
+  background-color: yellowgreen;
+}
+.planet:nth-child(4) {
+  background-color: blueviolet;
+}
+
+.showPlanetForwards {
+  animation-name: moveInFromRear;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.showPlanetBackwards {
+  animation-name: moveInFromFront;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.removePlanetForwards {
+  animation-name: moveOutToFront;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.removePlanetBackwards {
+  animation-name: moveOutToRear;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.planet-info__link-wrapper ul {
+  margin-top: 10rem;
+  display: flex;
+}
+.planet-info__link-wrapper ul li {
+  list-style: none;
+  font-size: 2rem;
+  margin: 0 1rem;
+  color: white;
+}
+
+@keyframes moveInFromRear {
+  0% {
+    transform: translate(-300%, -100%) scale(0);
+  }
+  100% {
+    transform: translate(0%, 0%) scale(100%);
+  }
+}
+@keyframes moveInFromFront {
+  0% {
+    transform: translate(-300%, 100%) scale(200%);
+  }
+  100% {
+    transform: translate(0%, 0%) scale(100%);
+  }
+}
+@keyframes moveOutToFront {
+  0% {
+    transform: translate(0%, 0%) scale(100%);
+  }
+  100% {
+    transform: translate(-300%, 100%) scale(200%);
+  }
+}
+@keyframes moveOutToRear {
+  0% {
+    transform: translate(0%, 0%) scale(100%);
+  }
+  100% {
+    transform: translate(-300%, -100%) scale(0%);
+  }
+}
 .crew {
   background-color: hotpink;
 }
